@@ -1,8 +1,12 @@
-class dse_cassandra($version = '2.2.1-1') {
+class dse_cassandra(
+  $version = '2.2.1-1',
+  $datastax_username=undef,
+  $datastax_password=undef,
+  ) {
   class { 'dse_cassandra::oracle_java': }
 
   apt::source { 'datastax':
-    location      => 'http://vsukyas_reachlocal.com:Yuj02tkFtnTE5zD@debian.datastax.com/enterprise',
+    location      => "http://${datastax_username}:${datastax_password}@debian.datastax.com/enterprise",
     release       => 'stable',
     repos         => 'main',
   }
